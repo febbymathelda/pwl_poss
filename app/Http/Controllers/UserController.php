@@ -10,26 +10,32 @@ class UserController extends Controller
 {
     public function index()
     {
-        $user = UserModel::all();
-        return view('user', ['data' => $user]); 
+        // $user = UserModel::all();
+        $user = UserModel::with('level')->get();
+        // dd($user);
+        return view('user', ['data' => $user]);
     }
-    public function tambah(){
+    public function tambah()
+    {
         return view('user_tambah');
     }
-    public function tambah_simpan(Request $request){
+    public function tambah_simpan(Request $request)
+    {
         UserModel::create([
+            'level_id' => $request->level_id,
             'username' => $request->username,
             'nama' => $request->nama,
-            'password' => Hash::make('$request->password'),
-            'level_id' => $request->level_id
+            'password' => Hash::make('$request->password')
         ]);
         return redirect('/user');
     }
-    public function ubah($id){
+    public function ubah($id)
+    {
         $user = UserModel::find($id);
         return view('user_ubah', ['data' => $user]);
     }
-    public function ubah_simpan($id, Request $request){
+    public function ubah_simpan($id, Request $request)
+    {
         $user = UserModel::find($id);
 
         $user->username = $request->username;
@@ -41,11 +47,12 @@ class UserController extends Controller
 
         return redirect('/user');
     }
-    public function hapus($id){
+    public function hapus($id)
+    {
         $user = UserModel::find($id);
+
         $user->delete();
 
         return redirect('/user');
     }
-
 }
