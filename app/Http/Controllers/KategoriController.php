@@ -2,12 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\KategoriModel;
 use Illuminate\Http\Request;
 use App\DataTables\KategoriDataTable;
+use Illuminate\Database\Exception;
 
 class KategoriController extends Controller
 {
     public function index(KategoriDataTable $dataTable){
         return $dataTable->render('kategori.index');
+    }
+    public function create(){
+        return view('kategori\cerate');
+    }
+    public function store(Request $request){
+        KategoriModel::create([
+            'kategori_kode' => $request->kodekategori,
+            'kategori_nama' => $request->namakategori,
+        ]);
+        return redirect('/kategori');
     }
 }
