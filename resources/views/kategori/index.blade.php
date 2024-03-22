@@ -11,9 +11,16 @@
         <div class="card">
             <div class="card-header">Manage Kategori</div>
             <div class="card-body">
+                <div class="d-flex justify-content-end">
+                    <a href="/Kategori/create" class="btn btn-primary">
+                        <i class="bi bi-plus-circle-fill mr-1"></i>
+                        <span>Tambah Kategori</span>
+                    </a>
+                </div>
                 {{ $dataTable->table() }}
             </div>
         </div>
+    </div>
         @endsection
 
         @push('scripts')

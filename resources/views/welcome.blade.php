@@ -2,9 +2,9 @@
 
 {{-- Customzize layout sections --}}
 
-@section('subtitle', 'Dashboard')
-@section('content_header_title', 'Dashboard')
-{{--@section('content_header_subtitle', 'Dashboard')--}}
+@section('subtitle', 'Welcome')
+@section('content_header_title', 'Home')
+@section('content_header_subtitle', 'Welcome')
 
 {{-- content body: main page content --}}
 
