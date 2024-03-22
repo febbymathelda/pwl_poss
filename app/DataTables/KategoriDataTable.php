@@ -2,7 +2,8 @@
 namespace App\DataTables; 
  
 use App\Models\KategoriModel; 
-use Illuminate\Database\Eloquent\Builder as QueryBuilder; 
+use Illuminate\Database\Eloquent\Builder as QueryBuilder;
+use Symfony\Component\VarDumper\VarDumper; 
 use Yajra\DataTables\EloquentDataTable; 
 use Yajra\DataTables\Html\Builder as HtmlBuilder; 
 use Yajra\DataTables\Html\Button; 
@@ -21,7 +22,18 @@ class KategoriDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable 
     { 
         return (new EloquentDataTable($query)) 
-/*             ->addColumn('action', 'kategori.action') */ 
+            ->addColumn('action', function($data){
+                return "
+                <div class='d-flex gap-1'>
+                <a href='/kategori/edit/{$data->kategori_id}' class='btn btn-warning'>
+                <i class='fas fa-edit'></i>
+                </a>
+                <a href='/kategori/{$data->kategori_id}' class='btn btn-danger'>
+                    <i class='fas fa-trash'></i>
+                    </a>
+                    </div>
+                ";
+            }) 
             ->setRowId('id'); 
     } 
  
@@ -71,6 +83,11 @@ class KategoriDataTable extends DataTable
             Column::make('kategori_nama'), 
             Column::make('created_at'), 
             Column::make('updated_at'), 
+            Column::computed('action')
+                    ->exportable(false)
+                    ->printable(false)
+                    ->width(60)
+                    ->addClass('text-center'),
         ]; 
     } 
  
