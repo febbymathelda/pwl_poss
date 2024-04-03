@@ -26,3 +26,33 @@
     </form>
 </body>
 </html>
+
+
+
+@extends('layouts.app')
+@section('subtitle', 'User')
+@section('content_header_title', 'User')
+@section('content')
+    
+        <div class="card-body">
+            <forom method="post" action="tambah_simpan">
+                {{ csrf_field() }}
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" class="form-control" name="Username" placeholder="Masukkan Username">
+                </div>
+                <div class="form-group">
+                    <label>Nama</label>
+                    <input type="text" class="form-control" name="Nama" placeholder="Masukkan Nama">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" class="form-control" name="Password" placeholder="Masukkan Password">
+                </div>
+                <div class="card-footer">
+                    <a href="../user" class="btn btn-primary">Submit</a>
+                </div>
+            </form>
+        </div>
+    </div>
+@endsection
