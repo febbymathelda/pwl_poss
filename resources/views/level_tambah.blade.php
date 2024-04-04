@@ -1,22 +1,32 @@
-@extends('layouts.app')
+@extends('layout.app')
 
-@section('subtitle', 'level')
-@section('content_header_title', 'level')
+{{-- Customize layout sections --}}
+
+@section('subtitle', 'User')
+@section('content_header_title', 'User')
+@section('content_header_subtitle', 'Add Data')
+{{-- Content body: main page content --}}
 @section('content')
-    
+    <div class="card card-primary">
+        <div class="card-header">
+            <h3 class="card-title">Form Tambah Data User</h3>
+        </div>
+        <!-- /.card-header -->
         <div class="card-body">
-            <forom method="post" action="tambah_simpan">
+            <form method="post" action="tambah_simpan">
                 {{ csrf_field() }}
+                <!-- text input -->
                 <div class="form-group">
                     <label>Level Kode</label>
-                    <input type="text" class="form-control" name="level_nama" placeholder="Masukkan Kode Level">
+                    <input type="text" class="form-control" name="level_kode" placeholder="Masukkan Level Kode">
                 </div>
                 <div class="form-group">
                     <label>Level Nama</label>
-                    <input type="text" class="form-control" name="level_nama" placeholder="Masukkan Nama Level">
+                    <input type="text" class="form-control" name="level_nama" placeholder="Masukkan Level Nama">
                 </div>
                 <div class="card-footer">
-                    <a href="../level" class="btn btn-primary">Submit</a>
+                    <a href="../level" class="btn btn-secondary">Kembali</a>
+                    <button type="submit" class="btn btn-primary">Add Data</button>
                 </div>
             </form>
         </div>
