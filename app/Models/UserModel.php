@@ -13,11 +13,11 @@ class UserModel extends Model
 
     protected $table = 'm_user'; //mendefinisikan nama tabel yg digunakan oleh model
     public $timestamps = false;
-    protected $primaryKey = 'user_id'; //mendefinisikan primary key dr tabel yg digunakan
-    protected $fillable = ['user_id', 'level_id','level_kode','username', 'nama', 'password'];
+    protected $primaryKey = 'users_id'; //mendefinisikan primary key dr tabel yg digunakan
+    protected $fillable = ['users_id', 'level_id','username', 'nama', 'password'];
 
     public function level(): BelongsTo
     {
-        return $this->belongsTo(LevelModel::class, 'level_id', 'level_id', 'level_kode');
+        return $this->belongsTo(LevelModel::class, 'level_id', 'level_id');
     }
 }
