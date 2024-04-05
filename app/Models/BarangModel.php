@@ -3,23 +3,18 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class BarangModel extends Model
 {
-    protected $table = 'barang'; // Assuming your barang table is named 'barang'
-    protected $primaryKey = 'barang_id'; // Assuming your barang primary key is 'barang_id'
+    protected $table = 'm_barang';
+    protected $primaryKey = 'barang_id';
 
-    protected $fillable = [
-        'kategori_id', // Foreign key referencing 'm_kategori.kategori_id'
-        'barang_kode',
-        'barang_nama',
-        'barang_harga',
-        'barang_deskripsi',
-        // Add other relevant fields for your barang table
-    ];
+    protected $fillable = ['kategori_id', 'barang_kode', 'barang_nama', 'harga_beli', 'harga_jual'];
 
-    public function kategori()
+    public function kategori(): BelongsTo
     {
-        return $this->belongsTo(KategoriModel::class, 'kategori_id', 'kategori_id');
+        return $this->belongsTo(KategoriModel::class, 'kategori_id');
     }
 }

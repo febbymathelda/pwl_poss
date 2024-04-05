@@ -9,7 +9,7 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up(): Void
     {
         Schema::create('m_barang', function (Blueprint $table) {
             $table->id('barang_id');
@@ -18,16 +18,12 @@ return new class extends Migration
             $table->string('barang_nama', 100);
             $table->integer('harga_beli');
             $table->integer('harga_jual');
-            $table->timestamps();
 
             $table->foreign('kategori_id')->references('kategori_id')->on('m_kategori');
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
+    public function down()
     {
         Schema::dropIfExists('m_barang');
     }
