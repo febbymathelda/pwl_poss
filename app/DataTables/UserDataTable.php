@@ -45,7 +45,7 @@ class LevelDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-        ->setTableId('level-table')
+        ->setTableId('level_table')
         ->columns($this->getColumns())
         ->minifiedAjax()
         //->dom('Bfrtip')
