@@ -8,6 +8,9 @@ use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\StokController;
 use App\Http\Controllers\TransaksiController;
+use APP\Http\Controllers\AuthController;
+use APP\Http\Controllers\AdminController;
+use APP\Http\Controllers\ManagerController;
 use Illuminate\Support\Facades\Route;
 use Monolog\Level;
 
@@ -104,4 +107,26 @@ Route::group(['prefix' => 'transaksi'], function () {
     Route::get('/{id}/edit', [TransaksiController::class, 'edit']); // menampilkan halaman form edit user
     Route::put('/{id}', [TransaksiController::class, 'update']); // menyimpan perubahan data user
     Route::delete('/{id}', [TransaksiController::class, 'destroy']); // menghapus data user
+});
+
+//Jobsheet 9 Auth, middleware
+Route::get('login', [AuthController::class, 'index'])->name('login');
+Route::get('register', [AuthController::class, 'register'])->name('register');
+Route::post('proses_login', [AuthController::class, 'proses_login'])->name('proses_login');
+Route::get('logout', [AuthController::class, 'logout'])->name('logout');
+Route::post('proses_register', [AuthController::class, 'proses_register'])->name('proses_register');
+
+// kita atur juga untuk middleware menggunakan group pada routing
+// didalamnya terdapat group untuk mengecek kondisi login
+// jika user yang login merupakan admin maka akan diarahkan ke AdminController
+// jika user yang login merupakan manager maka akan diarahkan ke UserController
+Route::group(['middleware' => ['auth']], function () {
+
+    Route::group(['middleware' => ['cek_login:1']], function () {
+        Route::resource('admin', AdminController::class);
+    });
+    Route::group(['middleware' => ['cek_login:2']], function () {
+        Route::resource('manager', ManagerController:: class) ;
+    });
+
 });
