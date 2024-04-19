@@ -8,9 +8,9 @@ use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\StokController;
 use App\Http\Controllers\TransaksiController;
-use APP\Http\Controllers\AuthController;
-use APP\Http\Controllers\AdminController;
-use APP\Http\Controllers\ManagerController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ManagerController;
 use Illuminate\Support\Facades\Route;
 use Monolog\Level;
 
