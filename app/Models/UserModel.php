@@ -2,32 +2,49 @@
 
 namespace App\Models;
 
+use Illuminate\Auth\Middleware\Authenticate;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Foundation\Auth\User;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class UserModel extends \Illuminate\Foundation\Auth\User
+use Illuminate\Foundation\Auth\User as Authenticatable;
+
+
+class UserModel extends Authenticatable implements JWTSubject
 {
-    use HasFactory;
+    // use HasFactory;
 
     protected $table = 'm_user';
-    protected $primaryKey = 'users_id';
+    protected $primaryKey = 'user_id';
 
     protected $fillable = ['level_id', 'username', 'nama', 'password'];
 
-    public function level(): BelongsTo
+    public function getJWTIdentifier()
     {
-        return $this->belongsTo(LevelModel::class, 'level_id', 'level_id');
+        return $this->getKey();
     }
 
-    public function stok(): HasMany
+    public function getJWTCustomClaims()
     {
-        return $this->hasMany(StokModel::class, 'users_id', 'users_id');
+        return [];
     }
 
-    public function transaksi(): HasMany
-    {
-        return $this->hasMany(TransaksiModel::class, 'users_id', 'users_id');
-    }
+
+    // public function level(): BelongsTo
+    // {
+    //     return $this->belongsTo(LevelModel::class, 'level_id', 'level_id');
+    // }
+
+    // public function stok(): HasMany
+    // {
+    //     return $this->hasMany(StokModel::class, 'user_id', 'user_id');
+    // }
+
+    // public function transaksi(): HasMany
+    // {
+    //     return $this->hasMany(TransaksiModel::class, 'user_id', 'user_id');
+    // }
 }
