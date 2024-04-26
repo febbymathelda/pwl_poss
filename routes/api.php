@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\Api\RegisterController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,8 +13,8 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
-
 Route::post('/register', App\Http\Controllers\Api\RegisterController::class)->name('register');
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+Route::post('/login', App\Http\Controllers\Api\LoginController::class)->name('login');
+Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
