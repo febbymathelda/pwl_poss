@@ -19,15 +19,15 @@
                 <td>{{ $barang->barang_id }}</td>
             </tr>
             <tr>
-                <th>Kode</th>
+                <th>Kode Barang</th>
                 <td>{{ $barang->barang_kode }}</td>
             </tr>
             <tr>
-                <th>Nama</th>
+                <th>Nama Barang</th>
                 <td>{{ $barang->barang_nama }}</td>
             </tr>
             <tr>
-                <th>Kategori</th>
+                <th>Nama Kategori</th>
                 <td>{{ $barang->kategori->kategori_nama }}</td>
             </tr>
             <tr>
@@ -37,6 +37,10 @@
             <tr>
                 <th>Harga Jual</th>
                 <td>{{ $barang->harga_jual }}</td>
+            </tr>
+            <tr>
+                <th>Gambar Barang</th>
+                <td><img src="{{ $barang->image }}" alt="Gambar Barang" width="100"></td>
             </tr>
         </table>
         @endempty

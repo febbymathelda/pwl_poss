@@ -8,33 +8,37 @@
     </div>
     <div class="card-body">
         @empty($user)
-            <div class="alert alert-danger alert-dismissible">
-                <h5><i class="icon fas fa-ban"></i> Kesalahan!</h5>
-                Data yang Anda cari tidak ditemukan.
-            </div>
+        <div class="alert alert-danger alert-dismissible">
+            <h5><i class="icon fas fa-ban"></i> Kesalahan!</h5>
+            Data yang Anda cari tidak ditemukan.
+        </div>
         @else
-            <table class="table table-bordered table-striped table-hover table-sm">
-                <tr>
-                    <th>ID</th>
-                    <td>{{ $user->users_id }}</td>
-                </tr>
-                <tr>
-                    <th>Level</th>
-                    <td>{{ $user->level->level_nama }}</td>
-                </tr>
-                <tr>
-                    <th>Username</th>
-                    <td>{{ $user->username }}</td>
-                </tr>
-                <tr>
-                    <th>Nama</th>
-                    <td>{{ $user->nama }}</td>
-                </tr>
-                <tr>
-                    <th>Password</th>
-                    <td></td>
-                </tr>
-            </table>
+        <table class="table table-bordered table-striped table-hover table-sm">
+            <tr>
+                <th>ID</th>
+                <td>{{ $user->user_id }}</td>
+            </tr>
+            <tr>
+                <th>Level</th>
+                <td>{{ $user->level->level_nama }}</td>
+            </tr>
+            <tr>
+                <th>Username</th>
+                <td>{{ $user->username }}</td>
+            </tr>
+            <tr>
+                <th>Nama</th>
+                <td>{{ $user->nama }}</td>
+            </tr>
+            <tr>
+                <th>Password</th>
+                <td>********</td>
+            </tr>
+            <tr>
+                <th>Foto Pengguna</th>
+                <td><img src="{{ $user->image }}" alt="Foto Pengguna" width="100"></td>
+            </tr>
+        </table>
         @endempty
         <a href="{{ url('user') }}" class="btn btn-sm btn-default mt-2">Kembali</a>
     </div>
@@ -42,9 +46,7 @@
 @endsection
 
 @push('css')
-    <!-- Additional CSS -->
 @endpush
 
 @push('js')
-    <!-- Additional JS -->
 @endpush
