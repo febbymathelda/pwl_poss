@@ -11,6 +11,7 @@ use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ManagerController;
+use App\Http\Controllers\FileUploadController;
 use Illuminate\Support\Facades\Route;
 use Monolog\Level;
 
@@ -130,3 +131,7 @@ Route::group(['middleware' => ['auth']], function () {
     });
 
 });
+
+//File Upload
+Route::get('/file-upload', [FileUploadController::class, 'fileUpload']);
+Route::post('/file-upload', [FileUploadController::class, 'prosesFileUpload']);
